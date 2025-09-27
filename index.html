@@ -199,23 +199,32 @@
 <div id="contactModal" class="modal">
   <div class="modal-content">
     <h4>Contactez-moi</h4>
-    <form action="send-mail.php" method="POST">
-      <div class="input-field">
-        <input id="name" type="text" required>
-        <label for="name">Nom</label>
-      </div>
-      <div class="input-field">
-        <input id="email" type="email" required>
-        <label for="email">Email</label>
-      </div>
-      <div class="input-field">
-        <textarea id="message" class="materialize-textarea" required></textarea>
-        <label for="message">Message</label>
-      </div>
-      <div class="modal-footer" style="margin-top: 20px;">
-        <button type="submit" class="modal-close waves-effect waves-green btn">Envoyer</button>
-      </div>
-    </form>
+    <!-- Replace with your actual Formspree endpoint -->
+<form action="https://formspree.io/f/mdkwalgo" method="POST">
+  <div class="input-field">
+    <input id="name" type="text" name="name" required>
+    <label for="name">Nom</label>
+  </div>
+  <div class="input-field">
+    <input id="email" type="email" name="email" required>
+    <label for="email">Email</label>
+  </div>
+  <div class="input-field">
+    <textarea id="message" name="message" class="materialize-textarea" required></textarea>
+    <label for="message">Message</label>
+  </div>
+
+  <!-- Optional: Redirect after submission -->
+  <input type="hidden" name="_redirect" value="https://raul59209.github.io/thank-you.html">
+
+  <!-- Optional: Hidden anti-bot field -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <div class="modal-footer" style="margin-top: 20px;">
+    <button type="submit" class="modal-close waves-effect waves-green btn">Envoyer</button>
+  </div>
+</form>
+
   </div>
 </div>
 
@@ -236,19 +245,6 @@
     var tooltips = document.querySelectorAll('.tooltipped');
     M.Tooltip.init(tooltips);
 
-    // Handle form submit
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-
-      // For now: just alert; you can replace with fetch() to send to a backend
-      alert(`Merci, ${name} ! Votre message a été envoyé.`);
-
-      // Optionally reset the form
-      this.reset();
-    });
   });
 </script>
 
