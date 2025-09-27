@@ -68,7 +68,6 @@
 
 
 
-</div>
 
 
 
@@ -214,8 +213,7 @@
     <label for="message">Message</label>
   </div>
 
-  <!-- Optional: Redirect after submission -->
-  <input type="hidden" name="_redirect" value="https://raul59209.github.io/thank-you.html">
+  
 
   <!-- Optional: Hidden anti-bot field -->
   <input type="text" name="_gotcha" style="display:none">
@@ -248,23 +246,57 @@
   });
 </script>
 
-
-  </div>
-  <script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('downloadBtn');
+    // Initialize FAB
+    var fabs = document.querySelectorAll('.fixed-action-btn');
+    M.FloatingActionButton.init(fabs, {
+      direction: 'top',
+      hoverEnabled: false
+    });
 
-    btn.addEventListener('click', function () {
-      // Add the bounce class
-      btn.classList.add('animate-bounce');
+    // Initialize modals
+    var modals = document.querySelectorAll('.modal');
+    M.Modal.init(modals);
 
-      // Remove it after animation completes so it can re-trigger
-      setTimeout(() => {
-        btn.classList.remove('animate-bounce');
-      }, 500);
+    // Initialize tooltips
+    var tooltips = document.querySelectorAll('.tooltipped');
+    M.Tooltip.init(tooltips);
+
+    // Handle Formspree submission via AJAX
+    const form = document.querySelector('#contactForm');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          M.toast({html: 'Merci pour votre message ! 😊'});
+          form.reset();
+          const modalInstance = M.Modal.getInstance(document.querySelector('#contactModal'));
+          modalInstance.close();
+        } else {
+          M.toast({html: 'Erreur : message non envoyé. 😢'});
+        }
+      } catch (error) {
+        M.toast({html: 'Erreur de connexion. Réessayez plus tard.'});
+      }
     });
   });
 </script>
+
+
+
+  </div>
+  
 
 
 <!-- Materialize JavaScript -->
