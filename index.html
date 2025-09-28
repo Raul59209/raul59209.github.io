@@ -37,7 +37,33 @@
     animation: bounce 0.5s ease;
   }
 </style>
+<style>.slide-in-section {
+  overflow: hidden; /* Prevent overflow during animation */
+  min-height: 300px; /* Adjust based on your content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2; /* Just for demo */
+  margin: 50px 0;
+}
 
+.slide-in-section .content {
+  opacity: 0;
+  transform: translateX(-200px);
+  filter: blur(8px);
+  transition: 
+    opacity 1s ease-out 0.2s,
+    transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    filter 1s ease-out 0.2s;
+}
+
+.slide-in-section.visible .content {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+</style>
 </head>
 <body>
 
@@ -226,6 +252,26 @@
   </div>
 </div>
 
+<!-- PROJECT SECTION-->
+ <section class="slide-in-section">
+  <div class="content">
+    <h2>Projets</h2>
+  <div class="card-container">
+    <div class="card">
+      <img src="recipator.png" alt="Description 1" style="max-width:800px;"/>
+      <p class="card-text">En tant qu'americain, souvent j'ai besoin de convertir des recettes. Cette programme le fera. Bientot disponible!</p>
+    </div>
+    <div class="card">
+      <video width="800" height="720" autoplay muted loop> <source src="gameplay.webm" type="video/webm"> </video>
+      <p class="card-text">Notre jeu de hangman que nous avons fait en cours. Bientot telechargeable!</p>
+    </div>
+  </div>
+</section>
+
+  </div>
+</section>
+
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // Initialize FAB
@@ -289,6 +335,27 @@
       } catch (error) {
         M.toast({html: 'Erreur de connexion. Réessayez plus tard.'});
       }
+    });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target); // Optional: run only once
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of section is visible
+      }
+    );
+
+    document.querySelectorAll(".slide-in-section").forEach((section) => {
+      observer.observe(section);
     });
   });
 </script>
