@@ -253,21 +253,58 @@
 </div>
 
 <!-- PROJECT SECTION-->
- <section class="slide-in-section">
+<style>
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    flex: 1 1 300px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .card img,
+  .card video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .card-text {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+</style>
+
+<section class="slide-in-section">
   <div class="content">
     <h2>Projets</h2>
-  <div class="card-container">
-    <div class="card">
-      <img src="recipator.png" alt="Description 1" style="max-width:800px;"/>
-      <p class="card-text">En tant qu'americain, souvent j'ai besoin de convertir des recettes. Cette programme le fera. Bientot disponible!</p>
+    <div class="card-container">
+      <div class="card">
+        <img src="recipator.png" alt="Recipator Screenshot" />
+        <p class="card-text">
+          En tant qu'américain, souvent j'ai besoin de convertir des recettes. Ce programme le fera. Bientôt disponible !
+        </p>
+      </div>
+      <div class="card">
+        <video autoplay muted loop>
+          <source src="gameplay.webm" type="video/webm" />
+        </video>
+        <p class="card-text">
+          Notre jeu de hangman que nous avons fait en cours. Bientôt téléchargeable !
+        </p>
+      </div>
     </div>
-    <div class="card">
-      <video width="800" height="720" autoplay muted loop> <source src="gameplay.webm" type="video/webm"> </video>
-      <p class="card-text">Notre jeu de hangman que nous avons fait en cours. Bientot telechargeable!</p>
-    </div>
-  </div>
-</section>
-
   </div>
 </section>
 
